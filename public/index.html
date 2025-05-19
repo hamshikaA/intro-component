@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-Up Form</title>
+    <link rel="stylesheet" href="App.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Sign Up</h2>
+        <form id="signupForm">
+            <input type="text" id="name" placeholder="Name">
+            <input type="email" id="email" placeholder="Email">
+            <input type="password" id="password" placeholder="Password">
+            <input type="password" id="confirmPassword" placeholder="Confirm Password">
+            <div class="error" id="error"></div>
+            <button type="button" onclick="validateForm()">Sign Up</button>
+        </form>
+    </div>
+
+    <script>
+        function validateForm() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const errorDiv = document.getElementById('error');
+
+            if (!name || !email || !password || !confirmPassword) {
+                errorDiv.textContent = "All fields are required";
+                return;
+            }
+
+            if (!/\S+@\S+\.\S+/.test(email)) {
+                errorDiv.textContent = "Invalid email format";
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                errorDiv.textContent = "Passwords do not match";
+                return;
+            }
+
+            errorDiv.textContent = "";
+            alert("Sign-up successful!");
+        }
+    </script>
+
+</body>
+</html>
